@@ -3,10 +3,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from "react-redux";
+import {combineReducers} from "redux";
+import {createStore} from "redux";
+import { reducer as formReducer } from "redux-form";
+
+
+let reducersPack = combineReducers({
+    form: formReducer
+})
+
+let store = createStore(reducersPack)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store = {store}>
+          <App />
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

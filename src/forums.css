@@ -1,0 +1,17 @@
+.card {
+    margin: 20px;
+}
+
+.card-header {
+    background-color: #EAFFF6;
+}
+
+.navbar {
+    background-color: #DAF5EC;
+}
+
+.hrr {
+    height: 4px;
+    color: black;
+    width: 75%;
+}

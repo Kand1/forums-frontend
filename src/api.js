@@ -3,61 +3,52 @@ import axios from "axios";
 
 
 const instance = axios.create({
-    baseURL: "127.0.1.1:5000/",
-    withCredentials: true
+    baseURL: "http://localhost:5000/api/",
+    withCredentials: true,
+    'X-Requested-With': 'XMLHttpRequest',
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+
+
 })
 
-// export const getTreads = (slug) => {
-//     return instance.get(`forum/${slug}/treads`)
-//         .then(response => response)
-// }
+const config = {
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+}
 
 export const getTreads = (slug) => {
+    return instance.get(`forum/${slug}/threads`)
+        .then(response => {
 
-    return new Promise((resolve, reject) => {
-
-        setTimeout(() => {
-            if (slug == "123"){
-                resolve([
-                    {
-                        "id": 42,
-                        "title": "Davy Jones cache",
-                        "author": "j.sparrow",
-                    },
-                    {
-                        "id": 43,
-                        "title": "Davy2ff Jones cache",
-                        "author": "j.sparrow",
-                    },
-                    {
-                        "id": 44,
-                        "title": "Davy44 Jones cache",
-                        "author": "j.sparrow",
-                    }
-                ])
-            }
-            if (slug == "456"){
-                resolve([
-                    {
-                        "id": 33,
-                        "title": "DavyfvvvvvvJones cache",
-                        "author": "j.sparrow",
-                    },
-                    {
-                        "id": 44,
-                        "title": "Davy2ff Jones cache",
-                        "author": "j.sparrow",
-                    },
-                    {
-                        "id": 56,
-                        "title": "Davy44 Jones cache",
-                        "author": "j.sparrow",
-                    }
-                ])
-            }
-
-        }, 1000)
-
-    })
-
+            return  response.data
+        })
 }
+
+export const getForumInfo = (slug) => {
+    return instance.get(`forum/${slug}/details`)
+        .then(response => {
+
+            return  response.data
+        })
+}
+
+export const getThread = (id) => {
+    return instance.get(`thread/${id}/details`)
+        .then(response => {
+
+            return  response.data
+        })
+}
+
+export const getPosts = (id) => {
+    return instance.get(`thread/${id}/posts`)
+        .then(response => {
+
+            return  response.data
+        })
+}
+
